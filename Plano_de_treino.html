@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Treino Full Body de 6 Semanas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #118AB2, #06D6A0);
+        }
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="gradient-bg text-white p-8 md:p-12 text-center rounded-b-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">O Teu Plano de Treino</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">Vamos começar com 6 semanas, foco na segurança, progressão e bem-estar geral no ginásio.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="principles" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="text-5xl font-bold text-[#118AB2]">6</div>
+                    <p class="text-lg font-semibold mt-2">Semanas de Transformação</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="text-5xl font-bold text-[#06D6A0]">2 a 3</div>
+                    <p class="text-lg font-semibold mt-2">Treinos Por Semana</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="text-5xl font-bold text-[#FFD166]">100%</div>
+                    <p class="text-lg font-semibold mt-2">Foco na Forma Correta</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey" class="mb-12">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-6 text-[#073B4C]">As 6 Semanas</h2>
+                 <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Este plano está dividido em três fases distintas, cada uma com a duração de duas semanas. A estrutura foi pensada para garantir uma adaptação suave e uma progressão constante, construindo a tua força e confiança passo a passo.</p>
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flex-1 text-center p-4 bg-blue-50 rounded-lg">
+                        <p class="text-sm text-gray-500">Semanas 1-2</p>
+                        <h3 class="text-xl font-bold text-[#118AB2]">Adaptação</h3>
+                        <p>Aprender os movimentos e criar a rotina.</p>
+                    </div>
+                    <div class="text-4xl text-[#FFD166] font-light hidden md:block">&rarr;</div>
+                     <div class="text-4xl text-[#FFD166] font-light md:hidden">&darr;</div>
+                    <div class="flex-1 text-center p-4 bg-green-50 rounded-lg">
+                        <p class="text-sm text-gray-500">Semanas 3-4</p>
+                        <h3 class="text-xl font-bold text-[#06D6A0]">Progressão</h3>
+                        <p>Aumentar a intensidade e o peso.</p>
+                    </div>
+                     <div class="text-4xl text-[#FFD166] font-light hidden md:block">&rarr;</div>
+                     <div class="text-4xl text-[#FFD166] font-light md:hidden">&darr;</div>
+                    <div class="flex-1 text-center p-4 bg-yellow-50 rounded-lg">
+                        <p class="text-sm text-gray-500">Semanas 5-6</p>
+                        <h3 class="text-xl font-bold text-[#FFD166]">Consolidação</h3>
+                        <p>Maximizar a força e refinar a técnica.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="progression-charts" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold text-center mb-4 text-[#073B4C]">Progressão das Séries</h3>
+                <p class="text-center text-gray-600 mb-4">Começamos com 2 séries para garantir a adaptação e aumentamos para 3 para desafiar os músculos e promover o crescimento.</p>
+                <div class="chart-container">
+                    <canvas id="seriesChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold text-center mb-4 text-[#073B4C]">Evolução das Repetições</h3>
+                <p class="text-center text-gray-600 mb-4">À medida que a tua força aumenta, o número de repetições diminui. Isto significa que estarás a levantar mais peso em cada série.</p>
+                <div class="chart-container">
+                    <canvas id="repsChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="exercises" class="mb-12">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-6 text-[#073B4C]">Os teus Exercícios</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Este plano utiliza 6 exercícios em máquinas que trabalham todos os principais grupos musculares do corpo, garantindo um treino completo e seguro.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+                        <span class="text-4xl">🦵</span>
+                        <h4 class="font-bold text-lg mt-2">Leg Press</h4>
+                        <p class="text-sm text-gray-600">Foco nas Pernas e Glúteos</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+                        <span class="text-4xl">💪</span>
+                        <h4 class="font-bold text-lg mt-2">Chest Press</h4>
+                        <p class="text-sm text-gray-600">Foco no Peito</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+                        <span class="text-4xl">🏋️</span>
+                        <h4 class="font-bold text-lg mt-2">Lat Pulldown</h4>
+                        <p class="text-sm text-gray-600">Foco nas Costas</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition-shadow md:col-start-1 lg:col-start-auto">
+                        <span class="text-4xl">🏋️</span>
+                        <h4 class="font-bold text-lg mt-2">Seated Row</h4>
+                        <p class="text-sm text-gray-600">Foco nas Costas e Bíceps</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+                        <span class="text-4xl">🦵</span>
+                        <h4 class="font-bold text-lg mt-2">Leg Extension</h4>
+                        <p class="text-sm text-gray-600">Foco nos Quadríceps</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+                         <span class="text-4xl">🦵</span>
+                        <h4 class="font-bold text-lg mt-2">Leg Curl</h4>
+                        <p class="text-sm text-gray-600">Foco nos Isquiotibiais</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plan-table" class="mb-12">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-6 text-[#073B4C]">Plano Detalhado</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Aqui está uma visão clara e organizada do teu plano de treino, com o número de séries e repetições para cada exercício e fase.</p>
+                
+                <h3 class="text-2xl font-bold mt-8 mb-4 text-[#118AB2]">Fase 1: Semanas 1-2</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full table-auto border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Exercício</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Séries</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Repetições</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Leg Press</td>
+                                <td class="px-4 py-3">2</td>
+                                <td class="px-4 py-3">12-15</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Chest Press</td>
+                                <td class="px-4 py-3">2</td>
+                                <td class="px-4 py-3">12-15</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Lat Pulldown</td>
+                                <td class="px-4 py-3">2</td>
+                                <td class="px-4 py-3">12-15</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Seated Row</td>
+                                <td class="px-4 py-3">2</td>
+                                <td class="px-4 py-3">12-15</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Leg Extension</td>
+                                <td class="px-4 py-3">2</td>
+                                <td class="px-4 py-3">12-15</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Leg Curl</td>
+                                <td class="px-4 py-3">2</td>
+                                <td class="px-4 py-3">12-15</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-bold mt-8 mb-4 text-[#06D6A0]">Fase 2: Semanas 3-4</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full table-auto border-collapse">
+                         <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Exercício</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Séries</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Repetições</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Leg Press</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">10-12</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Chest Press</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">10-12</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Lat Pulldown</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">10-12</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Seated Row</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">10-12</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Leg Extension</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">10-12</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Leg Curl</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">10-12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-bold mt-8 mb-4 text-[#FFD166]">Fase 3: Semanas 5-6</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full table-auto border-collapse">
+                         <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Exercício</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Séries</th>
+                                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Repetições</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Leg Press</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">8-10</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Chest Press</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">8-10</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Lat Pulldown</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">8-10</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Seated Row</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">8-10</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="px-4 py-3">Leg Extension</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">8-10</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="px-4 py-3">Leg Curl</td>
+                                <td class="px-4 py-3">3</td>
+                                <td class="px-4 py-3">8-10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center p-8 bg-gray-800 text-white rounded-xl shadow-lg">
+            <h3 class="text-2xl font-bold mb-2">Lembra-te: A Consistência é a Chave!</h3>
+            <p class="max-w-xl mx-auto">A progressão não é linear. O mais importante é manter a rotina e desafiares-te a cada treino, a cada série, não é para ser impossível mas também não pode ser fácil.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (label.length <= maxLength) return label;
+                
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                             font: {
+                                size: 14,
+                                family: 'Poppins'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        },
+                        titleFont: {
+                            size: 16,
+                            family: 'Poppins'
+                        },
+                        bodyFont: {
+                             size: 14,
+                             family: 'Poppins'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                         ticks: {
+                            font: {
+                                size: 12,
+                                family: 'Poppins'
+                            },
+                            stepSize: 1
+                        }
+                    },
+                    x: {
+                        ticks: {
+                             font: {
+                                size: 12,
+                                family: 'Poppins'
+                            },
+                            callback: function(value, index, ticks) {
+                                // This returns the pre-processed labels, which are already wrapped
+                                return this.getLabelForValue(value);
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const phaseLabels = ['Fase 1 (Semanas 1-2)', 'Fase 2 (Semanas 3-4)', 'Fase 3 (Semanas 5-6)'].map(wrapLabel);
+
+            const seriesCtx = document.getElementById('seriesChart').getContext('2d');
+            new Chart(seriesCtx, {
+                type: 'bar',
+                data: {
+                    labels: phaseLabels,
+                    datasets: [{
+                        label: 'Número de Séries',
+                        data: [2, 3, 3],
+                        backgroundColor: '#118AB2',
+                        borderColor: '#073B4C',
+                        borderWidth: 2,
+                        borderRadius: 5
+                    }]
+                },
+                options: commonChartOptions
+            });
+
+            const repsCtx = document.getElementById('repsChart').getContext('2d');
+            new Chart(repsCtx, {
+                type: 'line',
+                data: {
+                    labels: phaseLabels,
+                    datasets: [
+                        {
+                            label: 'Repetições Máximas',
+                            data: [15, 12, 10],
+                            borderColor: '#06D6A0',
+                            backgroundColor: 'rgba(6, 214, 160, 0.1)',
+                            fill: true,
+                            tension: 0.1,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#06D6A0'
+                        },
+                        {
+                            label: 'Repetições Mínimas',
+                            data: [12, 10, 8],
+                            borderColor: '#FFD166',
+                            backgroundColor: 'rgba(255, 209, 102, 0.1)',
+                            fill: true,
+                            tension: 0.1,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#FFD166'
+                        }
+                    ]
+                },
+                 options: {
+                    ...commonChartOptions,
+                    scales: {
+                         y: {
+                            beginAtZero: false,
+                             ticks: {
+                                font: {
+                                    size: 12,
+                                    family: 'Poppins'
+                                },
+                                stepSize: 1
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                 font: {
+                                    size: 12,
+                                    family: 'Poppins'
+                                },
+                                callback: function(value, index, ticks) {
+                                    return this.getLabelForValue(value);
+                                }
+                            }
+                        }
+                    }
+                 }
+            });
+        });
+    </script>
+</body>
+</html>
